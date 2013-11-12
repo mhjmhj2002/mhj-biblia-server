@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TestamentosCreateDlg" widgetVar="TestamentosCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.CreateTestamentosTitle}">
+
+            <h:form id="TestamentosCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{testamentosController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.CreateTestamentosLabel_tesId}" for="tesId" />
+                        <p:inputText id="tesId" value="#{testamentosController.selected.tesId}" title="#{bundle.CreateTestamentosTitle_tesId}" required="true" requiredMessage="#{bundle.CreateTestamentosRequiredMessage_tesId}"/>
+
+                        <p:outputLabel value="#{bundle.CreateTestamentosLabel_tesNome}" for="tesNome" />
+                        <p:inputText id="tesNome" value="#{testamentosController.selected.tesNome}" title="#{bundle.CreateTestamentosTitle_tesNome}" required="true" requiredMessage="#{bundle.CreateTestamentosRequiredMessage_tesNome}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{testamentosController.saveNew}" value="#{bundle.Save}" update="display,:TestamentosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,TestamentosCreateDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TestamentosCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

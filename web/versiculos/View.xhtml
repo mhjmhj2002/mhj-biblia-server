@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VersiculosViewDlg" widgetVar="VersiculosViewDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.ViewVersiculosTitle}">
+
+            <h:form id="VersiculosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{versiculosController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewVersiculosLabel_verId}"/>
+                        <h:outputText value="#{versiculosController.selected.verId}" title="#{bundle.ViewVersiculosTitle_verId}"/>
+
+                        <h:outputText value="#{bundle.ViewVersiculosLabel_verVrsId}"/>
+                        <h:outputText value="#{versiculosController.selected.verVrsId}" title="#{bundle.ViewVersiculosTitle_verVrsId}"/>
+
+                        <h:outputText value="#{bundle.ViewVersiculosLabel_verLivId}"/>
+                        <h:outputText value="#{versiculosController.selected.verLivId}" title="#{bundle.ViewVersiculosTitle_verLivId}"/>
+
+                        <h:outputText value="#{bundle.ViewVersiculosLabel_verCapitulo}"/>
+                        <h:outputText value="#{versiculosController.selected.verCapitulo}" title="#{bundle.ViewVersiculosTitle_verCapitulo}"/>
+
+                        <h:outputText value="#{bundle.ViewVersiculosLabel_verVersiculo}"/>
+                        <h:outputText value="#{versiculosController.selected.verVersiculo}" title="#{bundle.ViewVersiculosTitle_verVersiculo}"/>
+
+                        <h:outputText value="#{bundle.ViewVersiculosLabel_verTexto}"/>
+                        <h:outputText value="#{versiculosController.selected.verTexto}" title="#{bundle.ViewVersiculosTitle_verTexto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="VersiculosViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

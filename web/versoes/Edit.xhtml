@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VersoesEditDlg" widgetVar="VersoesEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditVersoesTitle}">
+
+            <h:form id="VersoesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{versoesController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditVersoesLabel_vrsId}" for="vrsId" />
+                        <h:outputText id="vrsId" value="#{versoesController.selected.vrsId}" />
+
+                        <p:outputLabel value="#{bundle.EditVersoesLabel_vrsNome}" for="vrsNome" />
+                        <p:inputText id="vrsNome" value="#{versoesController.selected.vrsNome}" title="#{bundle.EditVersoesTitle_vrsNome}" required="true" requiredMessage="#{bundle.EditVersoesRequiredMessage_vrsNome}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{versoesController.save}" value="#{bundle.Save}" update="display,:VersoesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,VersoesEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VersoesEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

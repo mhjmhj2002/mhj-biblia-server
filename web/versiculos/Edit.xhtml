@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VersiculosEditDlg" widgetVar="VersiculosEditDialog" modal="true" resizable="false" appendToBody="true" header="#{bundle.EditVersiculosTitle}">
+
+            <h:form id="VersiculosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{versiculosController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditVersiculosLabel_verId}" for="verId" />
+                        <h:outputText id="verId" value="#{versiculosController.selected.verId}" />
+
+                        <p:outputLabel value="#{bundle.EditVersiculosLabel_verVrsId}" for="verVrsId" />
+                        <p:inputText id="verVrsId" value="#{versiculosController.selected.verVrsId}" title="#{bundle.EditVersiculosTitle_verVrsId}" required="true" requiredMessage="#{bundle.EditVersiculosRequiredMessage_verVrsId}"/>
+
+                        <p:outputLabel value="#{bundle.EditVersiculosLabel_verLivId}" for="verLivId" />
+                        <p:inputText id="verLivId" value="#{versiculosController.selected.verLivId}" title="#{bundle.EditVersiculosTitle_verLivId}" required="true" requiredMessage="#{bundle.EditVersiculosRequiredMessage_verLivId}"/>
+
+                        <p:outputLabel value="#{bundle.EditVersiculosLabel_verCapitulo}" for="verCapitulo" />
+                        <p:inputText id="verCapitulo" value="#{versiculosController.selected.verCapitulo}" title="#{bundle.EditVersiculosTitle_verCapitulo}" required="true" requiredMessage="#{bundle.EditVersiculosRequiredMessage_verCapitulo}"/>
+
+                        <p:outputLabel value="#{bundle.EditVersiculosLabel_verVersiculo}" for="verVersiculo" />
+                        <p:inputText id="verVersiculo" value="#{versiculosController.selected.verVersiculo}" title="#{bundle.EditVersiculosTitle_verVersiculo}" required="true" requiredMessage="#{bundle.EditVersiculosRequiredMessage_verVersiculo}"/>
+
+                        <p:outputLabel value="#{bundle.EditVersiculosLabel_verTexto}" for="verTexto" />
+                        <p:inputTextarea rows="4" cols="30" id="verTexto" value="#{versiculosController.selected.verTexto}" title="#{bundle.EditVersiculosTitle_verTexto}" required="true" requiredMessage="#{bundle.EditVersiculosRequiredMessage_verTexto}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{versiculosController.save}" value="#{bundle.Save}" update="display,:VersiculosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,VersiculosEditDialog);"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VersiculosEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
