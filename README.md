@@ -1,4 +1,0 @@
-Biblia
-======
-
-Sistema para biblia
