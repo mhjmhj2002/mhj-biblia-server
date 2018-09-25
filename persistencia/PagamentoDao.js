@@ -3,6 +3,7 @@ function PagamentoDao(connection) {
 }
 
 PagamentoDao.prototype.salva = function(pagamento,callback) {
+	console.log('pagamento a inserir: ' + JSON.stringify(pagamento));
     this._connection.query('INSERT INTO pagamentos SET ?', pagamento, callback);
 }
 
