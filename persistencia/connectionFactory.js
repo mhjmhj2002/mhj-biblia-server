@@ -5,7 +5,8 @@ function createDBConnection(){
 			host: 'mysql.mhj.kinghost.net',
 			user: 'mhj',
 			password: '2y244y26',
-			database: 'mhj'
+			database: 'mhj',
+			connectionLimit : 10
 		});
 }
 
