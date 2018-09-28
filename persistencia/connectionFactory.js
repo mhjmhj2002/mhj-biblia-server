@@ -10,7 +10,7 @@ dbConnectionInfo = {
 };
 
 //For mysql single connection
-/* var dbconnection = mysql.createConnection(
+ var dbconnection = mysql.createConnection(
         dbConnectionInfo
 ); 
 
@@ -22,8 +22,9 @@ dbConnectionInfo = {
     }
 }); 
 
-*/
 
+
+/*
 //create mysql connection pool
 var dbconnection = mysql.createPool(
   dbConnectionInfo
@@ -38,6 +39,7 @@ dbconnection.on('connection', function (connection) {
   });
   connection.on('close', function (err) {
     console.error(new Date(), 'MySQL close', err);
+*/
 	
 module.exports = dbconnection;
 
