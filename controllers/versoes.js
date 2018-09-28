@@ -17,6 +17,7 @@ module.exports = function(app){
       }
       console.log('versoes encontrados: ' + JSON.stringify(resultado));
       res.json(resultado);
+	  connection.release();
       return;
     });
 
