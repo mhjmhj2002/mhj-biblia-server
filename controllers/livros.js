@@ -19,7 +19,6 @@ module.exports = function(app){
       }
       console.log('livro encontrado: ' + JSON.stringify(resultado));
       res.json(resultado);
-	  connection.release();
       return;
     });
 

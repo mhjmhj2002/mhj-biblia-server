@@ -25,7 +25,6 @@ module.exports = function(app){
       }
       console.log('versiculo encontrado: ' + JSON.stringify(resultado));
       res.json(resultado);
-	  connection.release();
       return;
     });
 
