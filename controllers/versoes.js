@@ -6,7 +6,7 @@ module.exports = function(app){
 
   app.get('/versoes/getAll', function(req, res){
 
-    var connection = app.persistencia.connectionFactory();
+    var connection = req.connection;//app.persistencia.connectionFactory();
     var versaoDao = new app.persistencia.VersaoDao(connection);
 
     versaoDao.getAll(function(erro, resultado){

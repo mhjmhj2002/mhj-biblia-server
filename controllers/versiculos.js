@@ -14,7 +14,7 @@ module.exports = function(app){
     console.log('consultando cap: ' + cap);
     console.log('consultando vers: ' + vers);
 
-    var connection = app.persistencia.connectionFactory();
+    var connection = req.connection;//app.persistencia.connectionFactory();
     var versiculoDao = new app.persistencia.VersiculoDao(connection);
 
     versiculoDao.buscaPorId(version, liv, cap, vers, function(erro, resultado){

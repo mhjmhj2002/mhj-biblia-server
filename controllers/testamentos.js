@@ -6,7 +6,7 @@ module.exports = function(app){
 
   app.get('/testamentos/getAll', function(req, res){
 
-    var connection = app.persistencia.connectionFactory();
+    var connection = req.connection;//app.persistencia.connectionFactory();
     var testamentoDao = new app.persistencia.TestamentoDao(connection);
 
     testamentoDao.getAll(function(erro, resultado){

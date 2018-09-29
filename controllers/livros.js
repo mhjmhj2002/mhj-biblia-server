@@ -8,7 +8,7 @@ module.exports = function(app){
     var test = req.params.test;
     console.log('consultando test: ' + test);
 
-    var connection = app.persistencia.connectionFactory();
+    var connection = req.connection;//app.persistencia.connectionFactory();
     var livroDao = new app.persistencia.LivroDao(connection);
 
     livroDao.buscaPorTestamento(test, function(erro, resultado){
