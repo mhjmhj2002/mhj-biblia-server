@@ -16,7 +16,7 @@ VersiculoDao.prototype.buscaPorId = function (version, liv, cap, vers, callback)
     if(vers){
         query = query + "and ver_versiculo = " + vers;
     }
-    this._connection.query(query, callback);
+    this._connection.query(query, "", callback);
 }
 
 module.exports = function(){
