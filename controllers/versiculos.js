@@ -4,20 +4,22 @@ module.exports = function(app){
     res.send('OK.');
   });  
 
-  app.get('/versiculos/versiculo/:version/:liv/:cap/:vers', function(req, res){
+  app.get('/versiculos/versiculo/:version/:liv/:cap/:versIni/:versFim', function(req, res){
     var version = req.params.version;
     var liv = req.params.liv;
     var cap = req.params.cap;
-    var vers = req.params.vers;
+    var versIni = req.params.versIni;
+    var versFim = req.params.versFim;
     console.log('consultando version: ' + version);
     console.log('consultando liv: ' + liv);
     console.log('consultando cap: ' + cap);
-    console.log('consultando vers: ' + vers);
+    console.log('consultando versIni: ' + versIni);
+    console.log('consultando versFim: ' + versFim);
 
     var connection = req.connection;//app.persistencia.connectionFactory();
     var versiculoDao = new app.persistencia.VersiculoDao(connection);
 
-    versiculoDao.buscaPorId(version, liv, cap, vers, function(erro, resultado){
+    versiculoDao.buscaPorId(version, liv, cap, versIni, versFim, function(erro, resultado){
       if(erro){
         console.log('erro ao consultar no banco: ' + erro);
         res.status(500).send(erro);
