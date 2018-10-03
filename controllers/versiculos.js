@@ -50,5 +50,27 @@ module.exports = function(app){
       return;
     });
 
+  });  
+
+  app.get('/versiculos/versiculo/:liv/:vers', function(req, res){
+    var liv = req.params.liv;
+    var vers = req.params.vers;
+    console.log('consultando liv: ' + liv);
+    console.log('consultando vers: ' + vers);
+
+    var connection = req.connection;//app.persistencia.connectionFactory();
+    var versiculoDao = new app.persistencia.VersiculoDao(connection);
+
+    versiculoDao.getQuantidadeVersiculos(liv, vers, function(erro, resultado){
+      if(erro){
+        console.log('erro ao consultar no banco: ' + erro);
+        res.status(500).send(erro);
+        return;
+      }
+      console.log('quantidade versiculos encontrado: ' + JSON.stringify(resultado));
+      res.json(resultado);
+      return;
+    });
+
   });
 }

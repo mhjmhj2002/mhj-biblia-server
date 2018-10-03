@@ -12,6 +12,11 @@ VersiculoDao.prototype.getQuantidadeCapitulos = function (liv, callback) {
     this._connection.query(query, [liv], callback);
 }
 
+VersiculoDao.prototype.getQuantidadeVersiculos = function (liv, vers, callback) {
+    var query = " SELECT max(ver_versiculo) as qtde_versiculos from versiculos where ver_liv_id = ? and ver_capitulo = ?";
+    this._connection.query(query, [liv, vers], callback);
+}
+
 module.exports = function(){
     return VersiculoDao;
 };
