@@ -3,7 +3,7 @@ function VersaoDao(connection) {
 }
 
 VersaoDao.prototype.getAll = function(callback) {
-    this._connection.query('select * from versoes',callback);
+    this._connection.query('select * from versoes order by vrs_nome',callback);
 }
 
 module.exports = function(){

@@ -3,7 +3,7 @@ function TestamentoDao(connection) {
 }
 
 TestamentoDao.prototype.getAll = function(callback) {
-    this._connection.query('select * from testamentos',callback);
+    this._connection.query('select * from testamentos order by tes_nome',callback);
 }
 
 module.exports = function(){

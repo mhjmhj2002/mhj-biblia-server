@@ -3,7 +3,7 @@ function LivroDao(connection) {
 }
 
 LivroDao.prototype.buscaPorTestamento = function (test, callback) {
-    this._connection.query("select * from livros where liv_tes_id = ?",[test],callback);
+    this._connection.query("select * from livros where liv_tes_id = ? order by liv_nome",[test],callback);
 }
 
 LivroDao.prototype.getAll = function(callback) {
