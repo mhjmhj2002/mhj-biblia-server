@@ -8,7 +8,7 @@ VersiculoDao.prototype.buscaPorId = function (version, liv, cap, versIni, versFi
 }
 
 VersiculoDao.prototype.getQuantidadeCapitulos = function (liv, callback) {
-    var query = " SELECT max(ver_capitulo) from versiculos where ver_liv_id = ? ";
+    var query = " SELECT max(ver_capitulo) as qtde_capitulos from versiculos where ver_liv_id = ? ";
     this._connection.query(query, [liv], callback);
 }
 
