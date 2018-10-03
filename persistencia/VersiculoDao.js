@@ -7,6 +7,11 @@ VersiculoDao.prototype.buscaPorId = function (version, liv, cap, versIni, versFi
     this._connection.query(query, [version, liv, cap, versIni, versFim], callback);
 }
 
+VersiculoDao.prototype.getQuantidadeCapitulos = function (liv) {
+    var query = " SELECT max(ver_capitulo) from versiculos where ver_liv_id = ? ";
+    this._connection.query(query, [liv], callback);
+}
+
 module.exports = function(){
     return VersiculoDao;
 };

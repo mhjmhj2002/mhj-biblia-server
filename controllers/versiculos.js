@@ -30,5 +30,25 @@ module.exports = function(app){
       return;
     });
 
+  });  
+
+  app.get('/versiculos/capitulo/:liv', function(req, res){
+    var liv = req.params.liv;
+    console.log('consultando liv: ' + liv);
+
+    var connection = req.connection;//app.persistencia.connectionFactory();
+    var versiculoDao = new app.persistencia.VersiculoDao(connection);
+
+    versiculoDao.getQuantidadeCapitulos(liv, function(erro, resultado){
+      if(erro){
+        console.log('erro ao consultar no banco: ' + erro);
+        res.status(500).send(erro);
+        return;
+      }
+      console.log('quantidade capitulos encontrado: ' + JSON.stringify(resultado));
+      res.json(resultado);
+      return;
+    });
+
   });
 }
