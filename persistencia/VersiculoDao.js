@@ -20,3 +20,20 @@ VersiculoDao.prototype.getQuantidadeVersiculos = function (liv, vers, callback) 
 module.exports = function(){
     return VersiculoDao;
 };
+
+VersiculoDao.prototype.buscaPorPalavra = function (version, liv, cap, versIni, versFim, word, callback) {    
+    var query = " select count(ver_id) from versiculos where upper(ver_texto) like %upper(?)% and ver_vrs_id = ? ";
+    if(liv != null) {
+        query += " and ver_liv_id = " + liv;
+    }
+    if(cap != null) {
+        query += " and ver_capitulo = " + cap;
+    }
+    if(versIni != null) {
+        query += " and ver_versiculo > " + versIni;
+    }
+    if(versFim != null) {
+        query += " and ver_versiculo < " + versFim;
+    }    
+    this._connection.query(query, [word, version], callback);
+}
