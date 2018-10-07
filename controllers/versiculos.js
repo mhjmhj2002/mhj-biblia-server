@@ -74,7 +74,37 @@ module.exports = function(app){
 
   }); 
 
-  app.get('/versiculos/palavra/:version/:liv/:cap/:versIni/:versFim/:word', function(req, res){
+  app.get('/versiculos/palavra/quantidade/:version/:liv/:cap/:versIni/:versFim/:word', function(req, res){
+    var version = req.params.version;
+    var liv = req.params.liv;
+    var cap = req.params.cap;
+    var versIni = req.params.versIni;
+    var versFim = req.params.versFim;
+    var word = req.params.word;
+    console.log('consultando version: ' + version);
+    console.log('consultando liv: ' + liv);
+    console.log('consultando cap: ' + cap);
+    console.log('consultando versIni: ' + versIni);
+    console.log('consultando versFim: ' + versFim);
+    console.log('consultando word: ' + word);
+
+    var connection = req.connection;//app.persistencia.connectionFactory();
+    var versiculoDao = new app.persistencia.VersiculoDao(connection);
+
+    versiculoDao.contaPorPalavra(version, liv, cap, versIni, versFim, word, function(erro, resultado){
+      if(erro){
+        console.log('erro ao consultar no banco: ' + erro);
+        res.status(500).send(erro);
+        return;
+      }
+      console.log('palavra encontrada: ' + JSON.stringify(resultado));
+      res.json(resultado);
+      return;
+    });
+
+  }); 
+
+  app.get('/versiculos/palavra/get/:version/:liv/:cap/:versIni/:versFim/:word', function(req, res){
     var version = req.params.version;
     var liv = req.params.liv;
     var cap = req.params.cap;
