@@ -22,7 +22,7 @@ module.exports = function(){
 };
 
 VersiculoDao.prototype.buscaPorPalavra = function (version, liv, cap, versIni, versFim, word, callback) {    
-    var query = " select count(ver_id) from versiculos where upper(ver_texto) like %upper(?)% and ver_vrs_id = ? ";
+    var query = " select count(ver_id) from versiculos where upper(ver_texto) like upper(?) and ver_vrs_id = ? ";
     if(liv != null) {
         query += " and ver_liv_id = " + liv;
     }
