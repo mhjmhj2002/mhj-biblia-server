@@ -1,10 +1,13 @@
 module.exports = function(app){
+  
+  var cors = require('cors');
+
   app.get('/versiculos', function(req, res){
     console.log('Recebida requisicao de teste na porta 3000.')
     res.send('OK.');
   });  
 
-  app.get('/versiculos/versiculo/:version/:liv/:cap/:versIni/:versFim', function(req, res){
+  app.get('/versiculos/versiculo/:version/:liv/:cap/:versIni/:versFim', cors(), function(req, res){
     var version = req.params.version;
     var liv = req.params.liv;
     var cap = req.params.cap;
@@ -17,7 +20,7 @@ module.exports = function(app){
     console.log('consultando versFim: ' + versFim);
 
     var connection = req.connection;//app.persistencia.connectionFactory();
-    var versiculoDao = new app.persistencia.VersiculoDao(connection);
+    var versiculoDao = new app.biblia.persistencia.VersiculoDao(connection);
 
     versiculoDao.buscaPorId(version, liv, cap, versIni, versFim, function(erro, resultado){
       if(erro){
@@ -32,12 +35,12 @@ module.exports = function(app){
 
   });  
 
-  app.get('/versiculos/capitulo/:liv', function(req, res){
+  app.get('/versiculos/capitulo/:liv', cors(), function(req, res){
     var liv = req.params.liv;
     console.log('consultando liv: ' + liv);
 
     var connection = req.connection;//app.persistencia.connectionFactory();
-    var versiculoDao = new app.persistencia.VersiculoDao(connection);
+    var versiculoDao = new app.biblia.persistencia.VersiculoDao(connection);
 
     versiculoDao.getQuantidadeCapitulos(liv, function(erro, resultado){
       if(erro){
@@ -52,14 +55,14 @@ module.exports = function(app){
 
   });  
 
-  app.get('/versiculos/versiculo/:liv/:vers', function(req, res){
+  app.get('/versiculos/versiculo/:liv/:vers', cors(), function(req, res){
     var liv = req.params.liv;
     var vers = req.params.vers;
     console.log('consultando liv: ' + liv);
     console.log('consultando vers: ' + vers);
 
     var connection = req.connection;//app.persistencia.connectionFactory();
-    var versiculoDao = new app.persistencia.VersiculoDao(connection);
+    var versiculoDao = new app.biblia.persistencia.VersiculoDao(connection);
 
     versiculoDao.getQuantidadeVersiculos(liv, vers, function(erro, resultado){
       if(erro){
@@ -74,7 +77,7 @@ module.exports = function(app){
 
   }); 
 
-  app.get('/versiculos/palavra/quantidade/:version/:liv/:cap/:versIni/:versFim/:word', function(req, res){
+  app.get('/versiculos/palavra/quantidade/:version/:liv/:cap/:versIni/:versFim/:word', cors(), function(req, res){
     var version = req.params.version;
     var liv = req.params.liv;
     var cap = req.params.cap;
@@ -89,7 +92,7 @@ module.exports = function(app){
     console.log('consultando word: ' + word);
 
     var connection = req.connection;//app.persistencia.connectionFactory();
-    var versiculoDao = new app.persistencia.VersiculoDao(connection);
+    var versiculoDao = new app.biblia.persistencia.VersiculoDao(connection);
 
     versiculoDao.contaPorPalavra(version, liv, cap, versIni, versFim, word, function(erro, resultado){
       if(erro){
@@ -104,7 +107,7 @@ module.exports = function(app){
 
   }); 
 
-  app.get('/versiculos/palavra/get/:version/:liv/:cap/:versIni/:versFim/:word', function(req, res){
+  app.get('/versiculos/palavra/get/:version/:liv/:cap/:versIni/:versFim/:word', cors(), function(req, res){
     var version = req.params.version;
     var liv = req.params.liv;
     var cap = req.params.cap;
@@ -119,7 +122,7 @@ module.exports = function(app){
     console.log('consultando word: ' + word);
 
     var connection = req.connection;//app.persistencia.connectionFactory();
-    var versiculoDao = new app.persistencia.VersiculoDao(connection);
+    var versiculoDao = new app.biblia.persistencia.VersiculoDao(connection);
 
     versiculoDao.buscaPorPalavra(version, liv, cap, versIni, versFim, word, function(erro, resultado){
       if(erro){

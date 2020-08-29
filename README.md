@@ -3,4 +3,4 @@ Sistema para biblia
 
 Versao Node: 8
 
-Comando para iniciar projeto: node index.js
+Comando para iniciar projeto: node biblia.js

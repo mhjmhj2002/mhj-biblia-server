@@ -1,4 +1,7 @@
 module.exports = function(app){
+  
+  var cors = require('cors');
+  
   app.get('/pagamentos', function(req, res){
     console.log('Recebida requisicao de teste na porta 3000.')
     res.send('OK.');
@@ -27,7 +30,7 @@ module.exports = function(app){
     pagamento.data = new Date;
 
     var connection = app.persistencia.connectionFactory();
-    var pagamentoDao = new app.persistencia.PagamentoDao(connection);
+    var pagamentoDao = new app.biblia.persistencia.PagamentoDao(connection);
 
     pagamentoDao.salva(pagamento, function(erro, resultado){
       if(erro){
@@ -49,7 +52,7 @@ module.exports = function(app){
     console.log('consultando pagamento: ' + id);
 
     var connection = app.persistencia.connectionFactory();
-    var pagamentoDao = new app.persistencia.PagamentoDao(connection);
+    var pagamentoDao = new app.biblia.persistencia.PagamentoDao(connection);
 
     pagamentoDao.buscaPorId(id, function(erro, resultado){
       if(erro){

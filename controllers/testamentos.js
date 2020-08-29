@@ -1,13 +1,16 @@
 module.exports = function(app){
+  
+  var cors = require('cors');
+
   app.get('/testamentos', function(req, res){
     console.log('Recebida requisicao de teste na porta 3000.')
     res.send('OK.');
   });  
 
-  app.get('/testamentos/getAll', function(req, res){
+  app.get('/testamentos/getAll', cors(), function(req, res){
 
     var connection = req.connection;//app.persistencia.connectionFactory();
-    var testamentoDao = new app.persistencia.TestamentoDao(connection);
+    var testamentoDao = new app.biblia.persistencia.TestamentoDao(connection);
 
     testamentoDao.getAll(function(erro, resultado){
       if(erro){
